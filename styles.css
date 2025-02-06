@@ -64,3 +64,39 @@ header p {
     text-align: center;
 }
 
+#memory-game h2 {
+    font-size: 2rem;
+    color: #713E31;
+}
+
+/* Footer styling */
+footer {
+    background-color: #971522;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#progress-bar {
+    font-size: 1rem;
+    color: white;
+}
+
+/* Additional styling for interactive elements */
+button {
+    background-color: #E7BE9A;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #971522;
+}
