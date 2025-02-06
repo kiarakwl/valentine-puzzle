@@ -1,81 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Find Me – A Valentine’s Puzzle Quest</title>
-  <!-- Link to your custom CSS file (which now includes font declarations) -->
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Puzzle Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Love Letter Introduction -->
-    <div id="love-letter">
-      <div class="heart">&#10084;</div>
-      <h2>My Love, I am missing...</h2>
-      <p>Follow the clues to find me, <span id="his-name">Nicholas</span>! (Dear, you know how much I adore you!)</p>
-      <button id="start-btn">Begin Puzzle</button>
-    </div>
+    <header>
+        <h1>Welcome to the Puzzle Challenge</h1>
+    </header>
 
-    <!-- Jigsaw Puzzle (8x8) -->
-    <div id="jigsaw"></div>
+    <main>
+        <section id="intro">
+            <h2>Welcome, Love!</h2>
+            <p>You're about to begin a special adventure.</p>
+        </section>
 
-    <!-- Memory Matching Game -->
-    <div id="memory-game">
-      <div class="progress-bar">
-        <div class="progress-bar-fill"></div>
-      </div>
-      <div class="grid"></div>
-    </div>
+        <!-- Puzzle Section will go here -->
+        <section id="puzzles">
+            <!-- Puzzle content will be added dynamically -->
+        </section>
+        
+        <section id="final">
+            <!-- Final message and reward video will go here -->
+        </section>
+    </main>
 
-    <!-- Heart Maze Game (Replacement for Heart Graph Plotting) -->
-    <div id="heart-maze">
-      <canvas id="mazeCanvas" width="400" height="400"></canvas>
-      <p>Solve the heart maze to proceed!</p>
-    </div>
+    <footer>
+        <p>&copy; 2025 Your Name</p>
+    </footer>
 
-    <!-- Interactive Polaroid Camera -->
-    <div id="polaroid">
-      <div class="polaroid-container">
-        <img src="polaroid1.jpg" alt="Polaroid 1">
-      </div>
-      <div class="polaroid-container">
-        <img src="polaroid2.jpg" alt="Polaroid 2">
-      </div>
-      <!-- Add more if needed -->
-    </div>
-
-    <!-- Soft Toy Clues -->
-    <div id="soft-toys">
-      <div class="toy" data-hint="Check under your pillow">
-        <img src="softtoy1.jpg" alt="Soft Toy 1">
-      </div>
-      <div class="toy" data-hint="Look beside the bookshelf">
-        <img src="softtoy2.jpg" alt="Soft Toy 2">
-      </div>
-    </div>
-
-    <!-- Record/CD of Memories -->
-    <div id="record">
-      <img src="record.jpg" alt="Record of Memories">
-    </div>
-
-    <!-- Final Reward Video -->
-    <div id="final-video">
-      <div class="final-messages">
-        <p>You found me!</p>
-        <p>Happy Valentine’s Day, my love!</p>
-      </div>
-      <video controls>
-        <source src="final-video.mp4" type="video/mp4">
-        Your browser does not support HTML video.
-      </video>
-    </div>
-
-    <!-- Next Button to advance the puzzles -->
-    <button class="next-btn" id="next-btn">Next</button>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+
