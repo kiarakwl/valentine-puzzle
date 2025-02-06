@@ -1,152 +1,37 @@
-/* Import or define your fonts */
-/* Example using @font-face (if you have the files locally): */
-@font-face {
-  font-family: 'Genty';
-  src: url('fonts/Genty.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Sulu Script';
-  src: url('fonts/SuluScript.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Playfair Display';
-  src: url('fonts/PlayfairDisplay.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-}
-@font-face {
-  font-family: 'Lulu Font TH';
-  src: url('fonts/LuluFontTH.woff2') format('woff2');
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F3F0E8; /* Background color */
+    color: #971522; /* Text color */
+    margin: 0;
+    padding: 0;
 }
 
-/* Base styling */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-  background-color: #F3F0E8; 
-  font-family: 'Lulu Font TH', sans-serif;
-  color: #971522; 
-}
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
+header, footer {
+    text-align: center;
+    background-color: #713E31; /* Accent color */
+    color: white;
+    padding: 10px;
 }
 
-/* Title styling: combine fonts for a decorative effect */
-h1, h2 {
-  font-family: 'Genty', 'Sulu Script', 'Playfair Display', serif;
-  color: #971522;
-  margin-bottom: 10px;
+h1 {
+    font-size: 2rem;
+    margin: 0;
 }
+
 h2 {
-  /* Subtitle styling */
-  font-family: 'Montserrat', sans-serif;
+    color: #E7BE9A; /* Accent color */
 }
 
-/* Update button color: replace gold with yellow */
-button, .next-btn {
-  background: yellow;  /* changed from gold */
-  color: #713E31;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  margin: 20px auto;
-  display: block;
+#puzzles {
+    margin: 20px;
+    padding: 20px;
+    background-color: #E7BE9A;
+    border-radius: 10px;
 }
 
-/* Other CSS sections remain similar, but update any "gold" references to yellow: */
-#love-letter {
-  display: none;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 600px;
-  background: white;
-  border: 5px solid #713E31;
-  padding: 20px;
-  z-index: 1000;
+#final {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.5rem;
 }
-#love-letter .heart {
-  font-size: 50px;
-  color: #E7BE9A;
-  margin-bottom: 10px;
-}
-
-/* Jigsaw Puzzle */
-#jigsaw {
-  display: none;
-  position: relative;
-  margin: 20px auto;
-  width: 80vw;
-  max-width: 600px;
-  height: 80vw;
-  max-height: 600px;
-  border: 5px solid #713E31;
-}
-.jigsaw-piece {
-  position: absolute;
-  border: 1px solid yellow; /* changed border color */
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-/* Memory Matching Game */
-#memory-game {
-  display: none;
-  margin: 20px auto;
-  width: 90vw;
-  max-width: 800px;
-}
-#memory-game .grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
-}
-#memory-game .card {
-  background-color: white;
-  border: 2px solid #713E31;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  cursor: pointer;
-  transition: transform 0.3s;
-  user-select: none;
-}
-#memory-game .card.flipped {
-  transform: rotateY(180deg);
-}
-.progress-bar {
-  margin: 10px 0;
-  background: #971522;
-  height: 20px;
-  width: 100%;
-  border: 2px solid yellow;
-}
-.progress-bar-fill {
-  background: #E7BE9A;
-  height: 100%;
-  width: 0%;
-  transition: width 0.5s;
-}
-
-/* Remove or hide the heart graph section (it’s replaced) */
-/* Instead, we add a heart maze section styling: */
-#heart-maze {
-  display: none;
-  margin: 20px auto;
-  text-align: center;
-}
-#heart-maze canvas {
-  background: white;
-  border: 5px solid #713E31;
-}
-
-/* Polaroid, Soft Toys, Record, and Final Video sections remain similar */
