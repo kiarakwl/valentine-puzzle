@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F3F0E8;
+    color: #713E31;
+}
+
+h1, h2 {
+    color: #971522;
+}
+
+/* Memory Game Styles */
+#memory-game {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #E7BE9A;
+    border: 2px solid #713E31;
+    border-radius: 5px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card.back {
+    background-color: #971522;
+}
+
+/* Polaroid Photo Styles */
+.polaroid {
+    width: 200px;
+    height: 250px;
+    border: 10px solid #E7BE9A;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 100%;
+}
+
+.polaroid .caption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #971522;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Button Styles */
+button {
+    background-color: #971522;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #713E31;
+}
+
+/* Progress Bar Styles */
+#progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #F3F0E8;
+    border: 1px solid #713E31;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#progress-bar .progress {
+    height: 100%;
+    width: 0;
+    background-color: #971522;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
+/* Animations for Cards */
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Final Reward Video Styles */
+#final-reward {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+#final-reward video {
+    width: 80%;
+    max-width: 800px;
+}
