@@ -1,67 +1,76 @@
-// Initialize the memory game
-let memoryGameCards = [
-    { id: 1, img: "path/to/img1.jpg", flipped: false },
-    { id: 2, img: "path/to/img2.jpg", flipped: false },
-    { id: 3, img: "path/to/img3.jpg", flipped: false },
-    { id: 4, img: "path/to/img4.jpg", flipped: false },
-    { id: 5, img: "path/to/img5.jpg", flipped: false },
-    { id: 6, img: "path/to/img6.jpg", flipped: false },
-    { id: 7, img: "path/to/img7.jpg", flipped: false },
-    { id: 8, img: "path/to/img8.jpg", flipped: false },
-];
+document.addEventListener("DOMContentLoaded", () => {
+    const memoryGrid = document.getElementById("memory-grid");
 
-let flippedCards = [];
+    const images = [
+        "1.jpg", "2.jpg", "3.jpg", "4.jpg",
+        "5.jpg", "6.jpg", "7.jpg", "8.jpg"
+    ];
 
-// Function to flip a card
-function flipCard(card) {
-    if (flippedCards.length < 2 && !card.flipped) {
-        card.flipped = true;
-        flippedCards.push(card);
-        renderMemoryGame();
+    let cards = [];
+    images.forEach(img => {
+        cards.push({ img: `images/${img}`, matched: false });
+        cards.push({ img: `images/${img}`, matched: false });
+    });
+
+    cards.sort(() => 0.5 - Math.random());
+
+    let selectedCards = [];
+    let matchedPairs = 0;
+
+    function createCard(cardData, index) {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.index = index;
+
+        const frontFace = document.createElement("div");
+        frontFace.classList.add("front");
+        
+        const backFace = document.createElement("div");
+        backFace.classList.add("back");
+        const img = document.createElement("img");
+        img.src = cardData.img;
+        backFace.appendChild(img);
+
+        card.appendChild(frontFace);
+        card.appendChild(backFace);
+
+        card.addEventListener("click", () => flipCard(card, cardData));
+        return card;
     }
 
-    if (flippedCards.length === 2) {
-        checkMatch();
+    function flipCard(card, cardData) {
+        if (selectedCards.length < 2 && !card.classList.contains("flipped")) {
+            card.classList.add("flipped");
+            selectedCards.push({ card, cardData });
+
+            if (selectedCards.length === 2) {
+                setTimeout(checkMatch, 1000);
+            }
+        }
     }
-}
 
-// Check if two flipped cards match
-function checkMatch() {
-    if (flippedCards[0].img === flippedCards[1].img) {
-        flippedCards = [];
-    } else {
-        setTimeout(() => {
-            flippedCards.forEach(card => card.flipped = false);
-            flippedCards = [];
-            renderMemoryGame();
-        }, 1000);
-    }
-}
+    function checkMatch() {
+        const [first, second] = selectedCards;
 
-// Render memory game cards
-function renderMemoryGame() {
-    let gameBoard = document.getElementById("memory-game");
-    gameBoard.innerHTML = "";
-
-    memoryGameCards.forEach(card => {
-        let cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        if (card.flipped) {
-            cardElement.style.backgroundImage = `url(${card.img})`;
+        if (first.cardData.img === second.cardData.img) {
+            first.cardData.matched = true;
+            second.cardData.matched = true;
+            matchedPairs++;
         } else {
-            cardElement.classList.add("back");
+            first.card.classList.remove("flipped");
+            second.card.classList.remove("flipped");
         }
 
-        cardElement.addEventListener("click", () => flipCard(card));
-        gameBoard.appendChild(cardElement);
+        selectedCards = [];
+
+        if (matchedPairs === images.length) {
+            setTimeout(() => alert("You completed the memory game!"), 500);
+        }
+    }
+
+    cards.forEach((cardData, index) => {
+        const card = createCard(cardData, index);
+        memoryGrid.appendChild(card);
     });
-}
+});
 
-// Shuffle the cards before starting the game
-function shuffleCards() {
-    memoryGameCards = memoryGameCards.sort(() => Math.random() - 0.5);
-    renderMemoryGame();
-}
-
-// Call the shuffle function when the page loads
-document.addEventListener("DOMContentLoaded", shuffleCards);
