@@ -1,37 +1,66 @@
+/* General styling for the body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #F3F0E8; /* Background color */
-    color: #971522; /* Text color */
+    background-color: #F3F0E8;
+    color: #713E31;
     margin: 0;
     padding: 0;
 }
 
-header, footer {
-    text-align: center;
-    background-color: #713E31; /* Accent color */
+/* Header styling */
+header {
+    background-color: #971522;
     color: white;
-    padding: 10px;
+    text-align: center;
+    padding: 20px;
 }
 
-h1 {
-    font-size: 2rem;
+header h1 {
+    font-size: 3rem;
     margin: 0;
 }
 
-h2 {
-    color: #E7BE9A; /* Accent color */
+header p {
+    font-size: 1.2rem;
 }
 
-#puzzles {
-    margin: 20px;
-    padding: 20px;
-    background-color: #E7BE9A;
-    border-radius: 10px;
-}
-
-#final {
-    display: none;
+/* Instructions section */
+#instructions {
     text-align: center;
-    margin-top: 50px;
-    font-size: 1.5rem;
+    margin-top: 20px;
 }
+
+#instructions .heart {
+    background-color: #E7BE9A;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Puzzle section styling */
+#puzzle-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#puzzle-section h2 {
+    font-size: 2rem;
+    color: #713E31;
+}
+
+#puzzle-section .puzzle-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    /* Add styling for your puzzle container here */
+}
+
+/* Memory game section styling */
+#memory-game {
+    margin-top: 40px;
+    text-align: center;
+}
+
