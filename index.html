@@ -3,43 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Puzzle</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/audio.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <title>Valentine’s Day Puzzle</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Valentine’s Day Puzzle</h1>
-        <p>Can you find me, my love?</p>
-    </header>
+    <h1>Valentine’s Day Puzzle</h1>
+    <p>Can you find me, my love?</p>
 
-    <section id="instructions">
-        <div class="heart">
-            <p>Welcome to your Valentine's Day Puzzle Game! Solve each challenge to find me. Let's begin!</p>
-        </div>
-    </section>
-
-    <section id="puzzle-section">
-        <!-- Puzzle-related elements will be here -->
-        <div id="jigsaw-puzzle">
+    <div id="game-container">
+        <section id="jigsaw">
             <h2>Jigsaw Puzzle</h2>
             <p>Complete the puzzle to move on!</p>
-            <div class="puzzle-container">
-                <!-- Your jigsaw puzzle content will go here -->
-            </div>
-        </div>
-    </section>
+            <img src="images/jigsaw-photo.jpg" alt="Jigsaw Puzzle">
+        </section>
 
-    <section id="memory-game">
-        <h2>Memory Matching Game</h2>
-        <p>Find the pairs of our photos!</p>
-        <!-- Memory game will be here -->
-    </section>
+        <section id="memory-game">
+            <h2>Memory Matching Game</h2>
+            <p>Find the pairs of our photos!</p>
+            <div id="memory-grid"></div>
+        </section>
+    </div>
 
-    <footer>
-        <p>Enjoy your Valentine's Day Puzzle!</p>
-        <p id="progress-bar">Progress: 0/8</p>
-    </footer>
+    <p id="progress">Progress: 0/8</p>
+
+    <script src="script.js"></script>
+    <script src="game.js"></script>
+    <script src="audio.js"></script>
 </body>
 </html>
