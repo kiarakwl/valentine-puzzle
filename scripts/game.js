@@ -1,73 +1,101 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const memoryGame = document.getElementById("memory-game");
-    const progressBar = document.getElementById("progress");
-    let progress = 1; // Adjusted for correct tracking
+    // Jigsaw Puzzle Logic
+    const puzzleContainer = document.getElementById("puzzle-container");
+    const pieces = Array.from(document.querySelectorAll(".puzzle-piece"));
+    let shuffledPieces = pieces.slice().sort(() => Math.random() - 0.5);
+    
+    shuffledPieces.forEach(piece => puzzleContainer.appendChild(piece));
+
+    let correctPlacements = 0;
+    pieces.forEach(piece => {
+        piece.addEventListener("dragstart", dragStart);
+        piece.addEventListener("dragover", dragOver);
+        piece.addEventListener("drop", drop);
+    });
+
+    function dragStart(event) {
+        event.dataTransfer.setData("text/plain", event.target.id);
+    }
+
+    function dragOver(event) {
+        event.preventDefault();
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        const draggedPiece = document.getElementById(event.dataTransfer.getData("text"));
+        const target = event.target;
+
+        if (target.classList.contains("puzzle-slot") && !target.hasChildNodes()) {
+            target.appendChild(draggedPiece);
+            correctPlacements++;
+
+            if (correctPlacements === pieces.length) {
+                setTimeout(() => {
+                    alert("Jigsaw puzzle completed! Moving to the next game...");
+                    document.getElementById("memory-game").style.display = "block";
+                }, 500);
+            }
+        }
+    }
+
+    // Memory Matching Game Logic
+    const memoryCards = document.querySelectorAll(".memory-card");
     let hasFlippedCard = false;
     let lockBoard = false;
     let firstCard, secondCard;
-    
-    const images = [
-        "memory-1.JPG", "memory-2.JPG", "memory-3.JPG", "memory-4.JPG", 
-        "memory-5.JPG", "memory-6.JPG", "memory-7.JPG", "memory-8.JPG"
-    ];
-    
-    const cards = [...images, ...images]; // Duplicate images for matching pairs
-    cards.sort(() => Math.random() - 0.5); // Shuffle cards
-    
-    cards.forEach((img, index) => {
-        const card = document.createElement("div");
-        card.classList.add("memory-card");
-        card.dataset.image = img;
-        card.innerHTML = `<img src="images/${img}" class="front-face" /><div class="back-face"></div>`;
-        memoryGame.appendChild(card);
-        card.addEventListener("click", flipCard);
-    });
-    
+    let matchedPairs = 0;
+
     function flipCard() {
         if (lockBoard) return;
         if (this === firstCard) return;
-        
+
         this.classList.add("flip");
-        
+
         if (!hasFlippedCard) {
             hasFlippedCard = true;
             firstCard = this;
             return;
         }
-        
+
         secondCard = this;
-        lockBoard = true;
-        
         checkForMatch();
     }
-    
+
     function checkForMatch() {
         let isMatch = firstCard.dataset.image === secondCard.dataset.image;
         isMatch ? disableCards() : unflipCards();
     }
-    
+
     function disableCards() {
         firstCard.removeEventListener("click", flipCard);
         secondCard.removeEventListener("click", flipCard);
+        matchedPairs++;
+
+        if (matchedPairs === memoryCards.length / 2) {
+            setTimeout(() => {
+                alert("Memory game completed! Enjoy your surprise!");
+                document.getElementById("final-video").style.display = "block";
+            }, 500);
+        }
+
         resetBoard();
-        updateProgress();
     }
-    
+
     function unflipCards() {
+        lockBoard = true;
         setTimeout(() => {
             firstCard.classList.remove("flip");
             secondCard.classList.remove("flip");
             resetBoard();
         }, 1000);
     }
-    
+
     function resetBoard() {
         [hasFlippedCard, lockBoard] = [false, false];
         [firstCard, secondCard] = [null, null];
     }
-    
-    function updateProgress() {
-        progress++;
-        progressBar.style.width = `${(progress / 8) * 100}%`;
-    }
+
+    memoryCards.forEach(card => card.addEventListener("click", flipCard));
 });
+
