@@ -1,43 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Jigsaw Puzzle Logic
-    const puzzleContainer = document.getElementById("puzzle-container");
-    const pieces = Array.from(document.querySelectorAll(".puzzle-piece"));
-    let shuffledPieces = pieces.slice().sort(() => Math.random() - 0.5);
-    
-    shuffledPieces.forEach(piece => puzzleContainer.appendChild(piece));
+    const jigsawCompleteBtn = document.getElementById("complete-jigsaw");
 
-    let correctPlacements = 0;
-    pieces.forEach(piece => {
-        piece.addEventListener("dragstart", dragStart);
-        piece.addEventListener("dragover", dragOver);
-        piece.addEventListener("drop", drop);
+    jigsawCompleteBtn.addEventListener("click", function () {
+        alert("Jigsaw Puzzle Completed!");
+        document.getElementById("memory-game").style.display = "block";
+        document.getElementById("jigsaw-game").style.display = "none";
     });
-
-    function dragStart(event) {
-        event.dataTransfer.setData("text/plain", event.target.id);
-    }
-
-    function dragOver(event) {
-        event.preventDefault();
-    }
-
-    function drop(event) {
-        event.preventDefault();
-        const draggedPiece = document.getElementById(event.dataTransfer.getData("text"));
-        const target = event.target;
-
-        if (target.classList.contains("puzzle-slot") && !target.hasChildNodes()) {
-            target.appendChild(draggedPiece);
-            correctPlacements++;
-
-            if (correctPlacements === pieces.length) {
-                setTimeout(() => {
-                    alert("Jigsaw puzzle completed! Moving to the next game...");
-                    document.getElementById("memory-game").style.display = "block";
-                }, 500);
-            }
-        }
-    }
 
     // Memory Matching Game Logic
     const memoryCards = document.querySelectorAll(".memory-card");
@@ -45,10 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let lockBoard = false;
     let firstCard, secondCard;
     let matchedPairs = 0;
+    const totalPairs = 8;
 
     function flipCard() {
-        if (lockBoard) return;
-        if (this === firstCard) return;
+        if (lockBoard || this === firstCard) return;
 
         this.classList.add("flip");
 
@@ -64,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function checkForMatch() {
         let isMatch = firstCard.dataset.image === secondCard.dataset.image;
+
         isMatch ? disableCards() : unflipCards();
     }
 
@@ -72,11 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
         secondCard.removeEventListener("click", flipCard);
         matchedPairs++;
 
-        if (matchedPairs === memoryCards.length / 2) {
+        if (matchedPairs === totalPairs) {
             setTimeout(() => {
-                alert("Memory game completed! Enjoy your surprise!");
+                alert("Memory Game Completed!");
                 document.getElementById("final-video").style.display = "block";
-            }, 500);
+                document.getElementById("memory-game").style.display = "none";
+            }, 1000);
         }
 
         resetBoard();
@@ -98,4 +69,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
     memoryCards.forEach(card => card.addEventListener("click", flipCard));
 });
-
